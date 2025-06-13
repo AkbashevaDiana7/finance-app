@@ -1,5 +1,5 @@
-name: repositories
-description: Репозитории
+name: repository_mocks
+description: Моки для репозиториев
 version: 1.0.0
 publish_to: none
 
@@ -9,6 +9,8 @@ environment:
 dependencies:
   models:
     path: ../models 
+  repository:
+    path: ../repository 
 
 dev_dependencies:
   flutter_lints: ^5.0.0
