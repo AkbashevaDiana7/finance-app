@@ -2,7 +2,7 @@ import 'package:api/api.dart' as api;
 import 'package:models/models.dart' as domain;
 import 'package:built_collection/built_collection.dart';
 import 'package:dio/dio.dart';
-import 'package:repositories/repositories.dart';
+import 'package:repository/repositories.dart';
 
 /// Мноооожесто мапперов domain <-> API модели
 // TODO: мог где-то пропустить параметры, перепроверить как-нибудь

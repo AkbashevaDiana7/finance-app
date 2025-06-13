@@ -1,6 +1,6 @@
 import 'package:api/api.dart' as api;
 import 'package:models/models.dart';
-import 'package:repositories/repositories.dart';
+import 'package:repository/repositories.dart';
 import 'package:dio/dio.dart';
 import 'api_mappers.dart';
 

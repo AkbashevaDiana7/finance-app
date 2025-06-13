@@ -167,10 +167,10 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.2.2"
-  repositories:
+  repository:
     dependency: "direct main"
     description:
-      path: "../repositories"
+      path: "../repository"
       relative: true
     source: path
     version: "1.0.0"

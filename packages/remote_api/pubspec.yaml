@@ -11,8 +11,8 @@ dependencies:
     path: ../api
   models:
     path: ../models
-  repositories:
-    path: ../repositories
+  repository:
+    path: ../repository
   dio: ^5.4.0 
 dev_dependencies:
   flutter_lints: ^5.0.0
