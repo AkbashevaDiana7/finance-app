@@ -1,0 +1,6 @@
+{
+    "apiNameSuffix": "Finance",
+    "pubName": "api",
+    "useRelativeImports": true,
+    "useEnumExtension": true
+}
