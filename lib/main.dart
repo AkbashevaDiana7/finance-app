@@ -13,6 +13,9 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
   late TabController _tabController;
 
+  static const Color _labelColor = Color(0xFF49454F);
+  static const Color _appBarColor = Color(0xFFF3EDF7);
+
   @override
   void initState() {
     super.initState();
@@ -31,8 +34,18 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
   @override
   Widget build(BuildContext context) => MaterialApp(
     home: Scaffold(
-      appBar: AppBar(
-        bottom: TabBar(
+      body: Material(
+        color: Colors.white,
+        child: Placeholder(child: Center(child: Text('Здесь будет контент'))),
+      ),
+      backgroundColor: Colors.white,
+      bottomNavigationBar: ColoredBox(
+        color: _appBarColor,
+        child: TabBar(
+          labelColor: _labelColor,
+          unselectedLabelColor: _labelColor,
+          indicatorColor: Colors.transparent,
+          dividerColor: Colors.transparent,
           controller: _tabController,
           tabs: List.generate(_tabItems.length, (index) {
             final int currentIndex =
@@ -64,6 +77,7 @@ class TabWrapper extends StatelessWidget {
   static const Color _inactiveIconColor = Color(0xFF49454F);
   static const Color activeBgColor = Color(0xFFD4FAE6);
   static const Color inactiveBgColor = Colors.transparent;
+  static const _iconBoxSize = Size(64, 32);
 
   const TabWrapper({
     super.key,
@@ -79,7 +93,7 @@ class TabWrapper extends StatelessWidget {
       icon: LayoutBuilder(
         builder: (context, constraints) {
           return Container(
-            width: constraints.maxWidth,
+            constraints: BoxConstraints.tight(_iconBoxSize),
             decoration: BoxDecoration(
               color: isActive ? activeBgColor : inactiveBgColor,
               borderRadius: BorderRadius.circular(_borderRadius),
