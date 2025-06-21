@@ -1064,17 +1064,10 @@ abstract class _TransactionFilter implements TransactionFilter {
       throw _privateConstructorUsedError;
 }
 
-Period _$PeriodFromJson(Map<String, dynamic> json) {
-  return _Period.fromJson(json);
-}
-
 /// @nodoc
 mixin _$Period {
   DateTime get startDate => throw _privateConstructorUsedError;
   DateTime get endDate => throw _privateConstructorUsedError;
-
-  /// Serializes this Period to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
   /// Create a copy of Period
   /// with the given fields replaced by the non-null parameter values.
@@ -1166,13 +1159,10 @@ class __$$PeriodImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
 class _$PeriodImpl extends _Period {
   const _$PeriodImpl({required this.startDate, required this.endDate})
     : super._();
-
-  factory _$PeriodImpl.fromJson(Map<String, dynamic> json) =>
-      _$$PeriodImplFromJson(json);
 
   @override
   final DateTime startDate;
@@ -1194,7 +1184,6 @@ class _$PeriodImpl extends _Period {
             (identical(other.endDate, endDate) || other.endDate == endDate));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, startDate, endDate);
 
@@ -1205,11 +1194,6 @@ class _$PeriodImpl extends _Period {
   @pragma('vm:prefer-inline')
   _$$PeriodImplCopyWith<_$PeriodImpl> get copyWith =>
       __$$PeriodImplCopyWithImpl<_$PeriodImpl>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$PeriodImplToJson(this);
-  }
 }
 
 abstract class _Period extends Period {
@@ -1218,8 +1202,6 @@ abstract class _Period extends Period {
     required final DateTime endDate,
   }) = _$PeriodImpl;
   const _Period._() : super._();
-
-  factory _Period.fromJson(Map<String, dynamic> json) = _$PeriodImpl.fromJson;
 
   @override
   DateTime get startDate;

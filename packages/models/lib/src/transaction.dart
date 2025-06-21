@@ -56,8 +56,6 @@ class Period with _$Period {
 
   const Period._();
 
-  factory Period.fromJson(Map<String, dynamic> json) => _$PeriodFromJson(json);
-
   /// Создает период для текущего месяца
   factory Period.currentMonth() {
     final now = DateTime.now();

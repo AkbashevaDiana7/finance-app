@@ -2,7 +2,24 @@ import 'package:models/models.dart';
 import 'package:repository/repositories.dart';
 
 class TransactionRepositoryMock implements TransactionRepository {
-  final List<Transaction> _transactions = [];
+  final List<Transaction> _transactions = [
+    ...List.generate(10000, (index) {
+      final date = DateTime.now().subtract(
+        Duration(days: index ~/ 20, minutes: 10),
+      );
+
+      return Transaction(
+        id: index + 1,
+        accountId: 1,
+        categoryId: index % 12 + 1,
+        amount: Money(amount: '${index + 1} 000', currency: Currency.rub),
+        comment: index % 7 == 0 ? 'comment $index' : null,
+        transactionDate: date,
+        createdAt: date,
+        updatedAt: date,
+      );
+    }),
+  ];
   int _nextId = 1;
 
   @override
@@ -14,9 +31,8 @@ class TransactionRepositoryMock implements TransactionRepository {
   }
 
   @override
-  Future<List<Transaction>> getAllTransactions() async {
-    return List<Transaction>.from(_transactions);
-  }
+  Future<List<Transaction>> getAllTransactions() async =>
+      List<Transaction>.unmodifiable(_transactions);
 
   @override
   Future<Transaction> createTransaction({

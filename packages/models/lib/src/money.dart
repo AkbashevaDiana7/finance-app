@@ -4,27 +4,29 @@ part 'money.freezed.dart';
 
 @freezed
 class Money with _$Money {
-  const factory Money({
-    required String amount,
-    required Currency currency,
-  }) = _Money;
+  const factory Money({required String amount, required Currency currency}) =
+      _Money;
+
+  factory Money.fromDouble(double amount, Currency currency) =>
+      Money(amount: amount.toInt().toString(), currency: currency);
 
   const Money._();
 
   factory Money.fromString(String amount, String currencyCode) {
-    return Money(
-      amount: amount,
-      currency: Currency.fromCode(currencyCode),
-    );
+    return Money(amount: amount, currency: Currency.fromCode(currencyCode));
   }
 
-  double get doubleValue => double.tryParse(amount) ?? 0.0;
+  double get doubleValue => double.tryParse(amount.replaceAll(' ', '')) ?? 0.0;
 
   bool get isZero => doubleValue == 0.0;
 
   bool get isPositive => doubleValue > 0.0;
 
   bool get isNegative => doubleValue < 0.0;
+
+  String get formatted =>
+      '${amount.replaceAllMapped(RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (match) => '${match[1]} ')} '
+      '${currency.symbol}';
 }
 
 @freezed
@@ -45,11 +47,7 @@ class Currency with _$Currency {
       case 'USD':
         return usd;
       case 'EUR':
-        return const Currency(
-          code: 'EUR',
-          symbol: '€',
-          name: 'Евро',
-        );
+        return const Currency(code: 'EUR', symbol: '€', name: 'Евро');
       default:
         return eur;
     }
@@ -68,9 +66,5 @@ class Currency with _$Currency {
     name: 'Доллар США',
   );
 
-  static const Currency eur = Currency(
-    code: 'EUR',
-    symbol: '€',
-    name: 'Евро',
-  );
+  static const Currency eur = Currency(code: 'EUR', symbol: '€', name: 'Евро');
 }
