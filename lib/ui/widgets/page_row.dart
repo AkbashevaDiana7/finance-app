@@ -8,26 +8,40 @@ class PageRow extends StatelessWidget {
   final String? amount;
   final Color? backgroundColor;
   final VoidCallback? onTap;
+  final Widget? amountWidget;
 
   const PageRow.header({
-    super.key,
     required this.text,
     required this.amount,
+    super.key,
+    this.iconText,
     this.onTap,
-  }) : showChevron = false,
+  }) : showChevron = onTap != null,
        subText = null,
        backgroundColor = _headerBackground,
-       iconText = null;
+       amountWidget = null;
 
   const PageRow.item({
+    required this.text,
     super.key,
     this.subText,
     this.iconText,
-    required this.text,
     this.amount,
     this.onTap,
   }) : showChevron = onTap != null,
-       backgroundColor = null;
+       backgroundColor = null,
+       amountWidget = null;
+
+  const PageRow.custom({
+    required this.text,
+    super.key,
+    this.subText,
+    this.iconText,
+    this.onTap,
+    this.amountWidget,
+  }) : showChevron = onTap != null,
+       backgroundColor = null,
+       amount = null;
 
   static const _padding = EdgeInsets.symmetric(horizontal: 16);
   static const _spaceWidth = 16.0;
@@ -65,7 +79,9 @@ class PageRow extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.end,
                 mainAxisSize: MainAxisSize.min,
                 children: [
+                  if (amountWidget != null) amountWidget!,
                   if (amount != null) Text(amount!, textAlign: TextAlign.end),
+
                   if (showChevron) ...[
                     SizedBox(width: _spaceWidth),
                     Icon(Icons.chevron_right, color: _chevronColor),
