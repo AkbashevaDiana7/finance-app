@@ -21,7 +21,7 @@ class PageRow extends StatelessWidget {
     this.onTap,
   }) : showChevron = onTap != null,
        subText = null,
-       backgroundColor = _headerBackground,
+       backgroundColor = headerBackground,
        amountWidget = null,
        textWidget = null;
 
@@ -48,6 +48,8 @@ class PageRow extends StatelessWidget {
     this.subText,
     this.iconText,
     this.onTap,
+
+    this.backgroundColor,
   }) : assert(
          !(text != null && textWidget != null),
          'text and textWidget cannot be at the same time',
@@ -56,14 +58,13 @@ class PageRow extends StatelessWidget {
          !(amount != null && amountWidget != null),
          'amount and amountWidget cannot be at the same time',
        ),
-       showChevron = onTap != null,
-       backgroundColor = null;
+       showChevron = onTap != null;
 
   static const _padding = EdgeInsets.symmetric(horizontal: 16);
   static const _spaceWidth = 16.0;
   static const _chevronColor = Color(0x3C3C434D);
   static const _dividerColor = Color(0xFFCAC4D0);
-  static const _headerBackground = Color(0xffD4FAE6);
+  static const headerBackground = Color(0xffD4FAE6);
 
   @override
   Widget build(BuildContext context) => InkWell(
