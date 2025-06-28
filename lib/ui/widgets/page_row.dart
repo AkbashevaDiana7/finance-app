@@ -3,7 +3,10 @@ import 'package:flutter/material.dart';
 class PageRow extends StatelessWidget {
   final bool showChevron;
   final String? iconText;
-  final String text;
+
+  final String? text;
+  final Widget? textWidget;
+
   final String? subText;
   final String? amount;
   final Color? backgroundColor;
@@ -19,7 +22,8 @@ class PageRow extends StatelessWidget {
   }) : showChevron = onTap != null,
        subText = null,
        backgroundColor = _headerBackground,
-       amountWidget = null;
+       amountWidget = null,
+       textWidget = null;
 
   const PageRow.item({
     required this.text,
@@ -30,18 +34,30 @@ class PageRow extends StatelessWidget {
     this.onTap,
   }) : showChevron = onTap != null,
        backgroundColor = null,
-       amountWidget = null;
+       amountWidget = null,
+       textWidget = null;
 
   const PageRow.custom({
-    required this.text,
+    this.text,
+    this.textWidget,
+
+    this.amount,
+    this.amountWidget,
+
     super.key,
     this.subText,
     this.iconText,
     this.onTap,
-    this.amountWidget,
-  }) : showChevron = onTap != null,
-       backgroundColor = null,
-       amount = null;
+  }) : assert(
+         !(text != null && textWidget != null),
+         'text and textWidget cannot be at the same time',
+       ),
+       assert(
+         !(amount != null && amountWidget != null),
+         'amount and amountWidget cannot be at the same time',
+       ),
+       showChevron = onTap != null,
+       backgroundColor = null;
 
   static const _padding = EdgeInsets.symmetric(horizontal: 16);
   static const _spaceWidth = 16.0;
@@ -72,7 +88,8 @@ class PageRow extends StatelessWidget {
                     SizedBox(width: _spaceWidth),
                   ],
 
-                  _TextPart(text: text, subText: subText),
+                  if (text != null) _TextPart(text: text!, subText: subText),
+                  if (textWidget != null) textWidget!,
                 ],
               ),
               Row(

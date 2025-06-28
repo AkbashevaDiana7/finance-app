@@ -30,13 +30,13 @@ openapi-generator generate \
 cd $OUTPUT_DIR
 
 # Получаем зависимости (скорее для vscode-а)
-fvm dart pub get
+dart pub get
 
 # Кодгеним модели
-fvm dart run build_runner build --delete-conflicting-outputs
+dart run build_runner build --delete-conflicting-outputs
 
 # Запускаем автоматику на пофиксить (unused import стреляет)
-fvm dart fix --apply .    
+dart fix --apply .    
 
 # Форматируем для красоты
 dart format .

@@ -4,6 +4,7 @@ enum OverviewNavigationState implements PageNavigationState {
   home,
   add,
   history,
+  analytics,
 }
 
 class OverviewNavigationScope
