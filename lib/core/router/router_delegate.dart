@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
+import '../../ui/pages/categories_page/categories_page.dart';
 import '../../ui/pages/pages.dart';
 import '../pages_root/pages_root.dart';
 import 'route_path.dart';
@@ -49,6 +50,10 @@ class AppRouterDelegate extends RouterDelegate<AppRoutePath>
             ),
             AppRoutePath.account => AppRoot(
               page: AccountPage(),
+              stateHolder: stateHolder,
+            ),
+            AppRoutePath.articles => AppRoot(
+              page: CategoriesPage(),
               stateHolder: stateHolder,
             ),
             _ => Material(

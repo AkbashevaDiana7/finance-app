@@ -52,7 +52,6 @@ class AccountEditPage extends StatelessWidget {
                 onTap: () {},
                 amountWidget: SizedBox(
                   width: 100,
-                  height: 10,
                   child: TextField(
                     keyboardType: TextInputType.number,
                     decoration: InputDecoration(
