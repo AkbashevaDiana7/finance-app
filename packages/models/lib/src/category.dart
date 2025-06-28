@@ -10,4 +10,4 @@ class Category with _$Category {
     required String emoji,
     required bool isIncome,
   }) = _Category;
-} 
+}

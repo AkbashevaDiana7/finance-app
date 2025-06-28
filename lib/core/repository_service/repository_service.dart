@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+
 import 'package:rxdart/rxdart.dart';
 import 'package:synchronized/synchronized.dart';
 import 'package:yx_scope/yx_scope.dart';
@@ -12,7 +13,7 @@ class RepositoryService<T> implements AsyncLifecycle {
 
   RepositoryService({
     required ValueGetter<Future<T>> onFetch,
-    required Duration refreshInterval,
+    Duration refreshInterval = const Duration(seconds: 1),
   }) : _onFetch = onFetch,
        _refreshInterval = refreshInterval;
 

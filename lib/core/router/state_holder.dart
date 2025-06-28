@@ -1,5 +1,6 @@
-import 'package:finance_app/core/router/route_path.dart';
 import 'package:rxdart/rxdart.dart';
+
+import 'route_path.dart';
 
 class NavigationStateHolder {
   final _routeSubject = BehaviorSubject<AppRoutePath>.seeded(

@@ -1,4 +1,4 @@
-library models;
+library;
 
 export 'src/account.dart';
 export 'src/category.dart';

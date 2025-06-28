@@ -30,6 +30,21 @@ extension DateTimeExtension on DateTime {
         .capitalize();
   }
 
+  String get formattedMonthAndYear {
+    final dateFormatter = DateFormat('MMMM yyyy');
+    return dateFormatter.format(this);
+  }
+
+  String get formattedDate {
+    final dateFormatter = DateFormat('dd.MM.yyyy');
+    return dateFormatter.format(this);
+  }
+
+  String get formattedTime {
+    final timeFormatter = DateFormat('HH:mm');
+    return timeFormatter.format(this);
+  }
+
   bool isBetween(DateTime start, DateTime end) =>
       isAfter(start) && isBefore(end);
 

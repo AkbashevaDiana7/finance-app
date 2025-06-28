@@ -1,7 +1,7 @@
-import 'package:finance_app/core/utils/datetime_extension.dart';
 import 'package:models/models.dart';
 import 'package:rxdart/rxdart.dart';
 
+import '../../../core/utils/datetime_extension.dart';
 import '../../../domain/transactions/transactions.dart';
 
 abstract interface class OverviewPageData {
@@ -15,6 +15,8 @@ abstract interface class OverviewPageRowData {
   String? get subText;
   String get amount;
   String? get iconText;
+
+  int get transactionId;
 }
 
 class _OverviewPageRowDataImpl implements OverviewPageRowData {
@@ -26,12 +28,15 @@ class _OverviewPageRowDataImpl implements OverviewPageRowData {
   final String amount;
   @override
   final String? iconText;
+  @override
+  final int transactionId;
 
   const _OverviewPageRowDataImpl({
     required this.text,
     required this.amount,
     required this.subText,
     required this.iconText,
+    required this.transactionId,
   });
 }
 
@@ -120,6 +125,7 @@ class _GroupedOverviewPageDataBuilder implements OverviewPageDataBuilder {
         amount: entry.value.amount.formatted,
         iconText: categoriesMap[entry.key]!.emoji,
         subText: null,
+        transactionId: entry.key,
       ),
     );
 
@@ -157,6 +163,7 @@ class _DetailedOverviewPageDataBuilder implements OverviewPageDataBuilder {
         subText: entry.comment,
         amount: '${entry.amount.formatted}\n${entry.transactionDate.formatted}',
         iconText: categoriesMap[entry.categoryId]!.emoji,
+        transactionId: entry.categoryId,
       ),
     );
 

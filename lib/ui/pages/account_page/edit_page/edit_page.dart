@@ -1,10 +1,10 @@
-import 'package:finance_app/ui/widgets/widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 import '../../../../core/page_navigation/page_navigation.dart';
+import '../../../widgets/widgets.dart';
 import '../account_navigation.dart';
-import 'package:flutter_slidable/flutter_slidable.dart';
 
 class AccountEditPage extends StatelessWidget {
   const AccountEditPage({super.key});

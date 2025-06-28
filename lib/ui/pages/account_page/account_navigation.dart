@@ -1,4 +1,4 @@
-import 'package:finance_app/core/page_navigation/page_navigation.dart';
+import '../../../core/page_navigation/page_navigation.dart';
 
 enum AccountNavigationState implements PageNavigationState { home, edit }
 
