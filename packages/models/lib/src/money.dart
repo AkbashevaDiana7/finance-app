@@ -24,9 +24,19 @@ class Money with _$Money {
 
   bool get isNegative => doubleValue < 0.0;
 
-  String get formatted =>
-      '${amount.replaceAllMapped(RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (match) => '${match[1]} ')} '
-      '${currency.symbol}';
+  String get formatted => '$formattedAmount ${currency.symbol}';
+
+  String get formattedAmount => amount
+      .replaceAll(' ', '')
+      .replaceAll(RegExp(r'^0+'), '') // удаляем все нули в начале
+      .replaceAll(
+        RegExp(r'^$'),
+        '0',
+      ) // если все нули, то они удалятся шагом выше, то ставим 0
+      .replaceAllMapped(
+        RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'),
+        (match) => '${match[1]} ',
+      );
 }
 
 @freezed

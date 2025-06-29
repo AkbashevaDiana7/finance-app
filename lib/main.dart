@@ -1,15 +1,15 @@
-import 'package:finance_app/scope/scope.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localization/flutter_localization.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 import 'package:logging/logging.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:yx_scope_flutter/yx_scope_flutter.dart';
 
 import 'core/router/router.dart';
+import 'scope/scope.dart';
 
 void main() async {
   Logger.root.level = Level.ALL;
@@ -41,6 +41,7 @@ class _App extends StatelessWidget {
   Widget build(BuildContext context) => ScopeProvider(
     holder: scopeHolder,
     child: MaterialApp.router(
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         appBarTheme: const AppBarTheme(
           backgroundColor: Color(0xff2AE881),

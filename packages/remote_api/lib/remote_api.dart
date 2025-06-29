@@ -1,4 +1,4 @@
-library remote_api;
+library;
 
 export 'src/remote_category_repository.dart';
 export 'src/remote_account_repository.dart';

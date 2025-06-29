@@ -2,7 +2,16 @@ import 'package:models/models.dart';
 import 'package:repository/repositories.dart';
 
 class AccountRepositoryMock implements AccountRepository {
-  final List<Account> _accounts = [];
+  final List<Account> _accounts = [
+    Account(
+      id: 1,
+      userId: 1,
+      name: 'Основной счет',
+      balance: const Money(amount: '1000', currency: Currency.rub),
+      createdAt: DateTime.now(),
+      updatedAt: DateTime.now(),
+    ),
+  ];
   int _nextId = 1;
 
   @override

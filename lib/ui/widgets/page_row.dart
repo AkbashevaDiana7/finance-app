@@ -3,37 +3,68 @@ import 'package:flutter/material.dart';
 class PageRow extends StatelessWidget {
   final bool showChevron;
   final String? iconText;
-  final String text;
+
+  final String? text;
+  final Widget? textWidget;
+
   final String? subText;
   final String? amount;
   final Color? backgroundColor;
   final VoidCallback? onTap;
+  final Widget? amountWidget;
 
   const PageRow.header({
-    super.key,
     required this.text,
     required this.amount,
+    super.key,
+    this.iconText,
     this.onTap,
-  }) : showChevron = false,
+  }) : showChevron = onTap != null,
        subText = null,
-       backgroundColor = _headerBackground,
-       iconText = null;
+       backgroundColor = headerBackground,
+       amountWidget = null,
+       textWidget = null;
 
   const PageRow.item({
+    required this.text,
     super.key,
     this.subText,
     this.iconText,
-    required this.text,
     this.amount,
     this.onTap,
   }) : showChevron = onTap != null,
-       backgroundColor = null;
+       backgroundColor = null,
+       amountWidget = null,
+       textWidget = null;
+
+  const PageRow.custom({
+    this.text,
+    this.textWidget,
+
+    this.amount,
+    this.amountWidget,
+
+    super.key,
+    this.subText,
+    this.iconText,
+    this.onTap,
+
+    this.backgroundColor,
+  }) : assert(
+         !(text != null && textWidget != null),
+         'text and textWidget cannot be at the same time',
+       ),
+       assert(
+         !(amount != null && amountWidget != null),
+         'amount and amountWidget cannot be at the same time',
+       ),
+       showChevron = onTap != null;
 
   static const _padding = EdgeInsets.symmetric(horizontal: 16);
   static const _spaceWidth = 16.0;
   static const _chevronColor = Color(0x3C3C434D);
   static const _dividerColor = Color(0xFFCAC4D0);
-  static const _headerBackground = Color(0xffD4FAE6);
+  static const headerBackground = Color(0xffD4FAE6);
 
   @override
   Widget build(BuildContext context) => InkWell(
@@ -58,14 +89,17 @@ class PageRow extends StatelessWidget {
                     SizedBox(width: _spaceWidth),
                   ],
 
-                  _TextPart(text: text, subText: subText),
+                  if (text != null) _TextPart(text: text!, subText: subText),
+                  if (textWidget != null) textWidget!,
                 ],
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 mainAxisSize: MainAxisSize.min,
                 children: [
+                  if (amountWidget != null) amountWidget!,
                   if (amount != null) Text(amount!, textAlign: TextAlign.end),
+
                   if (showChevron) ...[
                     SizedBox(width: _spaceWidth),
                     Icon(Icons.chevron_right, color: _chevronColor),

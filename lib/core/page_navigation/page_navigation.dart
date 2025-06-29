@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:rxdart/rxdart.dart';
+
 import 'package:logging/logging.dart';
+import 'package:rxdart/rxdart.dart';
 
 abstract interface class PageNavigationState implements Enum {}
 
@@ -35,7 +36,7 @@ mixin RxPageNavigationScope<T extends PageNavigationState>
 class _PageNavigationScopeState<T extends PageNavigationState>
     extends State<PageNavigationScope<T>>
     implements PageNavigationScopeState<T> {
-  late final BehaviorSubject<T> _stateSubject;
+  late final BehaviorSubject<List<T>> _stateSubject;
 
   final Logger _logger;
 
@@ -44,32 +45,33 @@ class _PageNavigationScopeState<T extends PageNavigationState>
   @override
   void goTo(T state) {
     _logger.info('goTo to $state');
-    _stateSubject.add(state);
+    _stateSubject.add([..._stateSubject.value, state]);
   }
 
   @override
   void pop() {
     _logger.info('pop to ${widget.initialState}');
-    _stateSubject.add(widget.initialState);
+    _stateSubject.add([
+      ..._stateSubject.value.sublist(0, _stateSubject.value.length - 1),
+    ]);
   }
 
   @override
-  T get state => _stateSubject.value;
+  T get state => _stateSubject.value.lastOrNull ?? widget.initialState;
 
   @override
   void initState() {
     super.initState();
     _logger.info('initState with default state ${widget.initialState}');
-    _stateSubject = BehaviorSubject.seeded(widget.initialState);
+    _stateSubject = BehaviorSubject.seeded(const []);
   }
 
   @override
   Widget build(BuildContext context) => PageNavigation<T>(
     scopeState: this,
-    child: StreamBuilder<T>(
-      initialData: widget.initialState,
+    child: StreamBuilder<List<T>>(
       stream: _stateSubject.stream,
-      builder: (context, snapshot) => widget.buildPage(snapshot.requireData),
+      builder: (context, _) => widget.buildPage(state),
     ),
   );
 }

@@ -1,5 +1,6 @@
-import 'package:finance_app/scope/scope.dart';
 import 'package:yx_scope/yx_scope.dart';
+
+import '../../../scope/scope.dart';
 
 abstract interface class OverviewScope implements Scope {}
 

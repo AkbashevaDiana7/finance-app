@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 import '../../../../core/page_navigation/page_navigation.dart';
+import '../../../widgets/widgets.dart';
 import '../account_navigation.dart';
 
 class AccountEditPage extends StatelessWidget {
@@ -15,17 +18,58 @@ class AccountEditPage extends StatelessWidget {
       onPopInvokedWithResult: (didPop, result) => navigation.pop(),
       child: Scaffold(
         appBar: AppBar(
+          centerTitle: true,
           title: const Text('Мой счет'),
           leading: IconButton(
             onPressed: () => navigation.pop(),
-            icon: const Icon(Icons.arrow_back),
+            icon: const Icon(Icons.close),
           ),
+          actions: [
+            IconButton(
+              onPressed: () => navigation.pop(),
+              icon: const Icon(Icons.check),
+            ),
+          ],
         ),
-        body: Material(
-          child: InkWell(
-            onTap: () => navigation.pop(),
-            child: Center(child: const Text('Удалить счет')),
-          ),
+        body: Column(
+          children: [
+            Slidable(
+              endActionPane: ActionPane(
+                motion: const ScrollMotion(),
+                extentRatio: 0.17,
+                children: [
+                  SlidableAction(
+                    onPressed: (_) => navigation.pop(),
+                    backgroundColor: Color(0xFFFE4A49),
+                    foregroundColor: Colors.white,
+                    icon: MdiIcons.trashCanOutline,
+                  ),
+                ],
+              ),
+              child: PageRow.custom(
+                iconText: '👤',
+                text: 'Баланс',
+                onTap: () {},
+                amountWidget: SizedBox(
+                  width: 100,
+                  child: TextField(
+                    keyboardType: TextInputType.number,
+                    decoration: InputDecoration(
+                      border: InputBorder.none,
+                      focusedBorder: InputBorder.none,
+                    ),
+                    textAlign: TextAlign.end,
+
+                    style: TextStyle(
+                      decoration: TextDecoration.none,
+                      decorationThickness: 0,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            ErrorButton(text: 'Удалить счет', onTap: () => navigation.pop()),
+          ],
         ),
       ),
     );

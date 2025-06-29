@@ -1,13 +1,18 @@
-import 'package:finance_app/scope/scope.dart';
 import 'package:flutter/material.dart';
+
 import 'package:models/models.dart';
 import 'package:yx_scope_flutter/yx_scope_flutter.dart';
 
+import '../../../scope/scope.dart';
 import 'add_page/add_page.dart';
+import 'analytics_page/analytics_page.dart';
 import 'history_page/history_page.dart';
 import 'overview_home_page/overview_home_page.dart';
 import 'overview_navigation.dart';
 import 'overview_page_data.dart';
+
+export 'add_page/add_page.dart';
+export 'history_page/history_page.dart';
 
 class OverviewPage extends StatelessWidget {
   final bool income;
@@ -18,8 +23,14 @@ class OverviewPage extends StatelessWidget {
     BuildContext context,
     Iterable<Transaction>? transactions,
   ) => OverviewPageDataTransformer.map(
-    transactions: ScopeProvider.of<AppContainer>(context)!.transactionsDep.get,
-    categories: ScopeProvider.of<AppContainer>(context)!.categoriesDep.get,
+    transactions:
+        ScopeProvider.of<AppContainer>(
+          context,
+        )!.transactions.serviceDep.get.value,
+    categories:
+        ScopeProvider.of<AppContainer>(
+          context,
+        )!.categories.serviceDep.get.value,
     income: income,
   );
 
@@ -27,11 +38,14 @@ class OverviewPage extends StatelessWidget {
   Widget build(BuildContext context) => OverviewNavigationScope(
     pageBuilder:
         (state) => StreamBuilder(
-          stream: ScopeProvider.of<AppContainer>(context)!.transactionsDep.get,
+          stream:
+              ScopeProvider.of<AppContainer>(
+                context,
+              )!.transactions.serviceDep.get.value,
           initialData:
               ScopeProvider.of<AppContainer>(
                 context,
-              )!.transactionsDep.get.value,
+              )!.transactions.serviceDep.get.value.value,
           builder: (context, snapshot) {
             if (!snapshot.hasData) {
               return const Center(child: CircularProgressIndicator());
@@ -40,6 +54,7 @@ class OverviewPage extends StatelessWidget {
             return switch (state) {
               OverviewNavigationState.home => OverviewHomePage(
                 data: _map(context, snapshot.data),
+                income: income,
               ),
               OverviewNavigationState.add => AddPage(
                 key: ValueKey('add-${income ? 'income' : 'expenses'}'),
@@ -47,6 +62,10 @@ class OverviewPage extends StatelessWidget {
               ),
               OverviewNavigationState.history => HistoryPage(
                 key: ValueKey('history-${income ? 'income' : 'expenses'}'),
+                income: income,
+              ),
+              OverviewNavigationState.analytics => AnalyticsPage(
+                key: ValueKey('analytics-${income ? 'income' : 'expenses'}'),
                 income: income,
               ),
             };

@@ -1,5 +1,6 @@
-import 'package:finance_app/core/router/route_path.dart';
 import 'package:flutter/material.dart';
+
+import 'route_path.dart';
 
 class AppRouteInformationParser extends RouteInformationParser<AppRoutePath> {
   const AppRouteInformationParser();

@@ -14,5 +14,6 @@ dependencies:
   repository:
     path: ../repository
   dio: ^5.4.0 
+  built_collection: ^5.1.1
 dev_dependencies:
   flutter_lints: ^5.0.0

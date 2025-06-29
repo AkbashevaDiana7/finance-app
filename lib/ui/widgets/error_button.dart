@@ -5,18 +5,22 @@ class ErrorButton extends StatelessWidget {
   final VoidCallback onTap;
 
   const ErrorButton({super.key, required this.text, required this.onTap});
+  static const _background = Color(0xffE46962);
+  static const _padding = EdgeInsets.all(16);
+  static const _border = BorderRadius.all(Radius.circular(100));
+  static const _innerPadding = EdgeInsets.all(10);
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(16),
+      padding: _padding,
       child: Material(
-        color: Theme.of(context).colorScheme.error,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(100)),
+        color: _background,
+        shape: RoundedRectangleBorder(borderRadius: _border),
         child: InkWell(
           onTap: () => onTap(),
           child: Padding(
-            padding: const EdgeInsets.all(10),
+            padding: _innerPadding,
             child: Center(
               child: Text(
                 text,
