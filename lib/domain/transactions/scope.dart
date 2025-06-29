@@ -1,6 +1,5 @@
 import 'package:models/models.dart';
 import 'package:repository/repositories.dart';
-import 'package:repository_mocks/repository_mocks.dart';
 import 'package:yx_scope/yx_scope.dart';
 
 import '../../core/repository_service/repository_service.dart';
@@ -17,14 +16,9 @@ class TransactionsModule extends ScopeModule<AppContainer>
     implements TransactionsScope {
   TransactionsModule(super.container);
 
-  static const _debug = true;
-
   @override
   late final Dep<TransactionRepository> repositoryDep = dep(
-    () =>
-        _debug
-            ? TransactionRepositoryMock()
-            : PersistentTransactionRepository(TransactionDatabase()),
+    () => PersistentTransactionRepository(TransactionDatabase()),
   );
 
   @override
