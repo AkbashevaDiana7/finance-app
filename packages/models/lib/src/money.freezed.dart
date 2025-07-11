@@ -15,10 +15,17 @@ final _privateConstructorUsedError = UnsupportedError(
   'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
 );
 
+Money _$MoneyFromJson(Map<String, dynamic> json) {
+  return _Money.fromJson(json);
+}
+
 /// @nodoc
 mixin _$Money {
   String get amount => throw _privateConstructorUsedError;
   Currency get currency => throw _privateConstructorUsedError;
+
+  /// Serializes this Money to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
   /// Create a copy of Money
   /// with the given fields replaced by the non-null parameter values.
@@ -125,9 +132,12 @@ class __$$MoneyImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$MoneyImpl extends _Money {
   const _$MoneyImpl({required this.amount, required this.currency}) : super._();
+
+  factory _$MoneyImpl.fromJson(Map<String, dynamic> json) =>
+      _$$MoneyImplFromJson(json);
 
   @override
   final String amount;
@@ -149,6 +159,7 @@ class _$MoneyImpl extends _Money {
                 other.currency == currency));
   }
 
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, amount, currency);
 
@@ -159,6 +170,11 @@ class _$MoneyImpl extends _Money {
   @pragma('vm:prefer-inline')
   _$$MoneyImplCopyWith<_$MoneyImpl> get copyWith =>
       __$$MoneyImplCopyWithImpl<_$MoneyImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$MoneyImplToJson(this);
+  }
 }
 
 abstract class _Money extends Money {
@@ -167,6 +183,8 @@ abstract class _Money extends Money {
     required final Currency currency,
   }) = _$MoneyImpl;
   const _Money._() : super._();
+
+  factory _Money.fromJson(Map<String, dynamic> json) = _$MoneyImpl.fromJson;
 
   @override
   String get amount;
@@ -181,11 +199,18 @@ abstract class _Money extends Money {
       throw _privateConstructorUsedError;
 }
 
+Currency _$CurrencyFromJson(Map<String, dynamic> json) {
+  return _Currency.fromJson(json);
+}
+
 /// @nodoc
 mixin _$Currency {
   String get code => throw _privateConstructorUsedError;
   String get symbol => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
+
+  /// Serializes this Currency to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
   /// Create a copy of Currency
   /// with the given fields replaced by the non-null parameter values.
@@ -289,13 +314,16 @@ class __$$CurrencyImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$CurrencyImpl extends _Currency {
   const _$CurrencyImpl({
     required this.code,
     required this.symbol,
     required this.name,
   }) : super._();
+
+  factory _$CurrencyImpl.fromJson(Map<String, dynamic> json) =>
+      _$$CurrencyImplFromJson(json);
 
   @override
   final String code;
@@ -319,6 +347,7 @@ class _$CurrencyImpl extends _Currency {
             (identical(other.name, name) || other.name == name));
   }
 
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, code, symbol, name);
 
@@ -329,6 +358,11 @@ class _$CurrencyImpl extends _Currency {
   @pragma('vm:prefer-inline')
   _$$CurrencyImplCopyWith<_$CurrencyImpl> get copyWith =>
       __$$CurrencyImplCopyWithImpl<_$CurrencyImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$CurrencyImplToJson(this);
+  }
 }
 
 abstract class _Currency extends Currency {
@@ -338,6 +372,9 @@ abstract class _Currency extends Currency {
     required final String name,
   }) = _$CurrencyImpl;
   const _Currency._() : super._();
+
+  factory _Currency.fromJson(Map<String, dynamic> json) =
+      _$CurrencyImpl.fromJson;
 
   @override
   String get code;

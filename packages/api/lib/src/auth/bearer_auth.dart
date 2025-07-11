@@ -18,6 +18,7 @@ class BearerAuthInterceptor extends AuthInterceptor {
         (secure) =>
             secure['type'] == 'http' &&
             secure['scheme']?.toLowerCase() == 'bearer');
+    print('authInfo: $authInfo');
     for (final info in authInfo) {
       final token = tokens[info['name']];
       if (token != null) {

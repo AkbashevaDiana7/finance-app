@@ -12,8 +12,7 @@ part of 'state.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
-);
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$AddPageState {
@@ -31,9 +30,8 @@ mixin _$AddPageState {
 /// @nodoc
 abstract class $AddPageStateCopyWith<$Res> {
   factory $AddPageStateCopyWith(
-    AddPageState value,
-    $Res Function(AddPageState) then,
-  ) = _$AddPageStateCopyWithImpl<$Res, AddPageState>;
+          AddPageState value, $Res Function(AddPageState) then) =
+      _$AddPageStateCopyWithImpl<$Res, AddPageState>;
   @useResult
   $Res call({Transaction transaction, Account account, Category category});
 
@@ -61,26 +59,20 @@ class _$AddPageStateCopyWithImpl<$Res, $Val extends AddPageState>
     Object? account = null,
     Object? category = null,
   }) {
-    return _then(
-      _value.copyWith(
-            transaction:
-                null == transaction
-                    ? _value.transaction
-                    : transaction // ignore: cast_nullable_to_non_nullable
-                        as Transaction,
-            account:
-                null == account
-                    ? _value.account
-                    : account // ignore: cast_nullable_to_non_nullable
-                        as Account,
-            category:
-                null == category
-                    ? _value.category
-                    : category // ignore: cast_nullable_to_non_nullable
-                        as Category,
-          )
-          as $Val,
-    );
+    return _then(_value.copyWith(
+      transaction: null == transaction
+          ? _value.transaction
+          : transaction // ignore: cast_nullable_to_non_nullable
+              as Transaction,
+      account: null == account
+          ? _value.account
+          : account // ignore: cast_nullable_to_non_nullable
+              as Account,
+      category: null == category
+          ? _value.category
+          : category // ignore: cast_nullable_to_non_nullable
+              as Category,
+    ) as $Val);
   }
 
   /// Create a copy of AddPageState
@@ -118,9 +110,8 @@ class _$AddPageStateCopyWithImpl<$Res, $Val extends AddPageState>
 abstract class _$$AddPageStateImplCopyWith<$Res>
     implements $AddPageStateCopyWith<$Res> {
   factory _$$AddPageStateImplCopyWith(
-    _$AddPageStateImpl value,
-    $Res Function(_$AddPageStateImpl) then,
-  ) = __$$AddPageStateImplCopyWithImpl<$Res>;
+          _$AddPageStateImpl value, $Res Function(_$AddPageStateImpl) then) =
+      __$$AddPageStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({Transaction transaction, Account account, Category category});
@@ -138,9 +129,8 @@ class __$$AddPageStateImplCopyWithImpl<$Res>
     extends _$AddPageStateCopyWithImpl<$Res, _$AddPageStateImpl>
     implements _$$AddPageStateImplCopyWith<$Res> {
   __$$AddPageStateImplCopyWithImpl(
-    _$AddPageStateImpl _value,
-    $Res Function(_$AddPageStateImpl) _then,
-  ) : super(_value, _then);
+      _$AddPageStateImpl _value, $Res Function(_$AddPageStateImpl) _then)
+      : super(_value, _then);
 
   /// Create a copy of AddPageState
   /// with the given fields replaced by the non-null parameter values.
@@ -151,36 +141,30 @@ class __$$AddPageStateImplCopyWithImpl<$Res>
     Object? account = null,
     Object? category = null,
   }) {
-    return _then(
-      _$AddPageStateImpl(
-        transaction:
-            null == transaction
-                ? _value.transaction
-                : transaction // ignore: cast_nullable_to_non_nullable
-                    as Transaction,
-        account:
-            null == account
-                ? _value.account
-                : account // ignore: cast_nullable_to_non_nullable
-                    as Account,
-        category:
-            null == category
-                ? _value.category
-                : category // ignore: cast_nullable_to_non_nullable
-                    as Category,
-      ),
-    );
+    return _then(_$AddPageStateImpl(
+      transaction: null == transaction
+          ? _value.transaction
+          : transaction // ignore: cast_nullable_to_non_nullable
+              as Transaction,
+      account: null == account
+          ? _value.account
+          : account // ignore: cast_nullable_to_non_nullable
+              as Account,
+      category: null == category
+          ? _value.category
+          : category // ignore: cast_nullable_to_non_nullable
+              as Category,
+    ));
   }
 }
 
 /// @nodoc
 
 class _$AddPageStateImpl implements _AddPageState {
-  const _$AddPageStateImpl({
-    required this.transaction,
-    required this.account,
-    required this.category,
-  });
+  const _$AddPageStateImpl(
+      {required this.transaction,
+      required this.account,
+      required this.category});
 
   @override
   final Transaction transaction;
@@ -219,11 +203,10 @@ class _$AddPageStateImpl implements _AddPageState {
 }
 
 abstract class _AddPageState implements AddPageState {
-  const factory _AddPageState({
-    required final Transaction transaction,
-    required final Account account,
-    required final Category category,
-  }) = _$AddPageStateImpl;
+  const factory _AddPageState(
+      {required final Transaction transaction,
+      required final Account account,
+      required final Category category}) = _$AddPageStateImpl;
 
   @override
   Transaction get transaction;

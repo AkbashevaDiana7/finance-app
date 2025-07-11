@@ -37,6 +37,8 @@ class Money with _$Money {
         RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'),
         (match) => '${match[1]} ',
       );
+
+  factory Money.fromJson(Map<String, dynamic> json) => _$MoneyFromJson(json);
 }
 
 @freezed
@@ -77,4 +79,7 @@ class Currency with _$Currency {
   );
 
   static const Currency eur = Currency(code: 'EUR', symbol: '€', name: 'Евро');
+
+  factory Currency.fromJson(Map<String, dynamic> json) =>
+      _$CurrencyFromJson(json);
 }

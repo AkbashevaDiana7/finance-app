@@ -12,164 +12,112 @@ class $TransactionsTable extends Transactions
   static const VerificationMeta _idMeta = const VerificationMeta('id');
   @override
   late final GeneratedColumn<int> id = GeneratedColumn<int>(
-    'id',
-    aliasedName,
-    false,
-    hasAutoIncrement: true,
-    type: DriftSqlType.int,
-    requiredDuringInsert: false,
-    defaultConstraints: GeneratedColumn.constraintIsAlways(
-      'PRIMARY KEY AUTOINCREMENT',
-    ),
-  );
-  static const VerificationMeta _accountIdMeta = const VerificationMeta(
-    'accountId',
-  );
+      'id', aliasedName, false,
+      hasAutoIncrement: true,
+      type: DriftSqlType.int,
+      requiredDuringInsert: false,
+      defaultConstraints:
+          GeneratedColumn.constraintIsAlways('PRIMARY KEY AUTOINCREMENT'));
+  static const VerificationMeta _accountIdMeta =
+      const VerificationMeta('accountId');
   @override
   late final GeneratedColumn<int> accountId = GeneratedColumn<int>(
-    'account_id',
-    aliasedName,
-    false,
-    type: DriftSqlType.int,
-    requiredDuringInsert: true,
-  );
-  static const VerificationMeta _categoryIdMeta = const VerificationMeta(
-    'categoryId',
-  );
+      'account_id', aliasedName, false,
+      type: DriftSqlType.int, requiredDuringInsert: true);
+  static const VerificationMeta _categoryIdMeta =
+      const VerificationMeta('categoryId');
   @override
   late final GeneratedColumn<int> categoryId = GeneratedColumn<int>(
-    'category_id',
-    aliasedName,
-    false,
-    type: DriftSqlType.int,
-    requiredDuringInsert: true,
-  );
+      'category_id', aliasedName, false,
+      type: DriftSqlType.int, requiredDuringInsert: true);
   @override
   late final GeneratedColumnWithTypeConverter<models.Money, String> amount =
-      GeneratedColumn<String>(
-        'amount',
-        aliasedName,
-        false,
-        type: DriftSqlType.string,
-        requiredDuringInsert: true,
-      ).withConverter<models.Money>($TransactionsTable.$converteramount);
-  static const VerificationMeta _transactionDateMeta = const VerificationMeta(
-    'transactionDate',
-  );
+      GeneratedColumn<String>('amount', aliasedName, false,
+              type: DriftSqlType.string, requiredDuringInsert: true)
+          .withConverter<models.Money>($TransactionsTable.$converteramount);
+  static const VerificationMeta _transactionDateMeta =
+      const VerificationMeta('transactionDate');
   @override
   late final GeneratedColumn<DateTime> transactionDate =
-      GeneratedColumn<DateTime>(
-        'transaction_date',
-        aliasedName,
-        false,
-        type: DriftSqlType.dateTime,
-        requiredDuringInsert: true,
-      );
-  static const VerificationMeta _commentMeta = const VerificationMeta(
-    'comment',
-  );
+      GeneratedColumn<DateTime>('transaction_date', aliasedName, false,
+          type: DriftSqlType.dateTime, requiredDuringInsert: true);
+  static const VerificationMeta _commentMeta =
+      const VerificationMeta('comment');
   @override
   late final GeneratedColumn<String> comment = GeneratedColumn<String>(
-    'comment',
-    aliasedName,
-    true,
-    type: DriftSqlType.string,
-    requiredDuringInsert: false,
-  );
-  static const VerificationMeta _createdAtMeta = const VerificationMeta(
-    'createdAt',
-  );
+      'comment', aliasedName, true,
+      type: DriftSqlType.string, requiredDuringInsert: false);
+  static const VerificationMeta _createdAtMeta =
+      const VerificationMeta('createdAt');
   @override
   late final GeneratedColumn<DateTime> createdAt = GeneratedColumn<DateTime>(
-    'created_at',
-    aliasedName,
-    false,
-    type: DriftSqlType.dateTime,
-    requiredDuringInsert: true,
-  );
-  static const VerificationMeta _updatedAtMeta = const VerificationMeta(
-    'updatedAt',
-  );
+      'created_at', aliasedName, false,
+      type: DriftSqlType.dateTime, requiredDuringInsert: true);
+  static const VerificationMeta _updatedAtMeta =
+      const VerificationMeta('updatedAt');
   @override
   late final GeneratedColumn<DateTime> updatedAt = GeneratedColumn<DateTime>(
-    'updated_at',
-    aliasedName,
-    false,
-    type: DriftSqlType.dateTime,
-    requiredDuringInsert: true,
-  );
+      'updated_at', aliasedName, false,
+      type: DriftSqlType.dateTime, requiredDuringInsert: true);
   @override
   List<GeneratedColumn> get $columns => [
-    id,
-    accountId,
-    categoryId,
-    amount,
-    transactionDate,
-    comment,
-    createdAt,
-    updatedAt,
-  ];
+        id,
+        accountId,
+        categoryId,
+        amount,
+        transactionDate,
+        comment,
+        createdAt,
+        updatedAt
+      ];
   @override
   String get aliasedName => _alias ?? actualTableName;
   @override
   String get actualTableName => $name;
   static const String $name = 'transactions';
   @override
-  VerificationContext validateIntegrity(
-    Insertable<Transaction> instance, {
-    bool isInserting = false,
-  }) {
+  VerificationContext validateIntegrity(Insertable<Transaction> instance,
+      {bool isInserting = false}) {
     final context = VerificationContext();
     final data = instance.toColumns(true);
     if (data.containsKey('id')) {
       context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
     }
     if (data.containsKey('account_id')) {
-      context.handle(
-        _accountIdMeta,
-        accountId.isAcceptableOrUnknown(data['account_id']!, _accountIdMeta),
-      );
+      context.handle(_accountIdMeta,
+          accountId.isAcceptableOrUnknown(data['account_id']!, _accountIdMeta));
     } else if (isInserting) {
       context.missing(_accountIdMeta);
     }
     if (data.containsKey('category_id')) {
       context.handle(
-        _categoryIdMeta,
-        categoryId.isAcceptableOrUnknown(data['category_id']!, _categoryIdMeta),
-      );
+          _categoryIdMeta,
+          categoryId.isAcceptableOrUnknown(
+              data['category_id']!, _categoryIdMeta));
     } else if (isInserting) {
       context.missing(_categoryIdMeta);
     }
     if (data.containsKey('transaction_date')) {
       context.handle(
-        _transactionDateMeta,
-        transactionDate.isAcceptableOrUnknown(
-          data['transaction_date']!,
           _transactionDateMeta,
-        ),
-      );
+          transactionDate.isAcceptableOrUnknown(
+              data['transaction_date']!, _transactionDateMeta));
     } else if (isInserting) {
       context.missing(_transactionDateMeta);
     }
     if (data.containsKey('comment')) {
-      context.handle(
-        _commentMeta,
-        comment.isAcceptableOrUnknown(data['comment']!, _commentMeta),
-      );
+      context.handle(_commentMeta,
+          comment.isAcceptableOrUnknown(data['comment']!, _commentMeta));
     }
     if (data.containsKey('created_at')) {
-      context.handle(
-        _createdAtMeta,
-        createdAt.isAcceptableOrUnknown(data['created_at']!, _createdAtMeta),
-      );
+      context.handle(_createdAtMeta,
+          createdAt.isAcceptableOrUnknown(data['created_at']!, _createdAtMeta));
     } else if (isInserting) {
       context.missing(_createdAtMeta);
     }
     if (data.containsKey('updated_at')) {
-      context.handle(
-        _updatedAtMeta,
-        updatedAt.isAcceptableOrUnknown(data['updated_at']!, _updatedAtMeta),
-      );
+      context.handle(_updatedAtMeta,
+          updatedAt.isAcceptableOrUnknown(data['updated_at']!, _updatedAtMeta));
     } else if (isInserting) {
       context.missing(_updatedAtMeta);
     }
@@ -182,46 +130,23 @@ class $TransactionsTable extends Transactions
   Transaction map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
     return Transaction(
-      id:
-          attachedDatabase.typeMapping.read(
-            DriftSqlType.int,
-            data['${effectivePrefix}id'],
-          )!,
-      accountId:
-          attachedDatabase.typeMapping.read(
-            DriftSqlType.int,
-            data['${effectivePrefix}account_id'],
-          )!,
-      categoryId:
-          attachedDatabase.typeMapping.read(
-            DriftSqlType.int,
-            data['${effectivePrefix}category_id'],
-          )!,
-      amount: $TransactionsTable.$converteramount.fromSql(
-        attachedDatabase.typeMapping.read(
-          DriftSqlType.string,
-          data['${effectivePrefix}amount'],
-        )!,
-      ),
-      transactionDate:
-          attachedDatabase.typeMapping.read(
-            DriftSqlType.dateTime,
-            data['${effectivePrefix}transaction_date'],
-          )!,
-      comment: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}comment'],
-      ),
-      createdAt:
-          attachedDatabase.typeMapping.read(
-            DriftSqlType.dateTime,
-            data['${effectivePrefix}created_at'],
-          )!,
-      updatedAt:
-          attachedDatabase.typeMapping.read(
-            DriftSqlType.dateTime,
-            data['${effectivePrefix}updated_at'],
-          )!,
+      id: attachedDatabase.typeMapping
+          .read(DriftSqlType.int, data['${effectivePrefix}id'])!,
+      accountId: attachedDatabase.typeMapping
+          .read(DriftSqlType.int, data['${effectivePrefix}account_id'])!,
+      categoryId: attachedDatabase.typeMapping
+          .read(DriftSqlType.int, data['${effectivePrefix}category_id'])!,
+      amount: $TransactionsTable.$converteramount.fromSql(attachedDatabase
+          .typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}amount'])!),
+      transactionDate: attachedDatabase.typeMapping.read(
+          DriftSqlType.dateTime, data['${effectivePrefix}transaction_date'])!,
+      comment: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}comment']),
+      createdAt: attachedDatabase.typeMapping
+          .read(DriftSqlType.dateTime, data['${effectivePrefix}created_at'])!,
+      updatedAt: attachedDatabase.typeMapping
+          .read(DriftSqlType.dateTime, data['${effectivePrefix}updated_at'])!,
     );
   }
 
@@ -243,16 +168,15 @@ class Transaction extends DataClass implements Insertable<Transaction> {
   final String? comment;
   final DateTime createdAt;
   final DateTime updatedAt;
-  const Transaction({
-    required this.id,
-    required this.accountId,
-    required this.categoryId,
-    required this.amount,
-    required this.transactionDate,
-    this.comment,
-    required this.createdAt,
-    required this.updatedAt,
-  });
+  const Transaction(
+      {required this.id,
+      required this.accountId,
+      required this.categoryId,
+      required this.amount,
+      required this.transactionDate,
+      this.comment,
+      required this.createdAt,
+      required this.updatedAt});
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
@@ -260,9 +184,8 @@ class Transaction extends DataClass implements Insertable<Transaction> {
     map['account_id'] = Variable<int>(accountId);
     map['category_id'] = Variable<int>(categoryId);
     {
-      map['amount'] = Variable<String>(
-        $TransactionsTable.$converteramount.toSql(amount),
-      );
+      map['amount'] =
+          Variable<String>($TransactionsTable.$converteramount.toSql(amount));
     }
     map['transaction_date'] = Variable<DateTime>(transactionDate);
     if (!nullToAbsent || comment != null) {
@@ -280,19 +203,16 @@ class Transaction extends DataClass implements Insertable<Transaction> {
       categoryId: Value(categoryId),
       amount: Value(amount),
       transactionDate: Value(transactionDate),
-      comment:
-          comment == null && nullToAbsent
-              ? const Value.absent()
-              : Value(comment),
+      comment: comment == null && nullToAbsent
+          ? const Value.absent()
+          : Value(comment),
       createdAt: Value(createdAt),
       updatedAt: Value(updatedAt),
     );
   }
 
-  factory Transaction.fromJson(
-    Map<String, dynamic> json, {
-    ValueSerializer? serializer,
-  }) {
+  factory Transaction.fromJson(Map<String, dynamic> json,
+      {ValueSerializer? serializer}) {
     serializer ??= driftRuntimeOptions.defaultSerializer;
     return Transaction(
       id: serializer.fromJson<int>(json['id']),
@@ -320,25 +240,25 @@ class Transaction extends DataClass implements Insertable<Transaction> {
     };
   }
 
-  Transaction copyWith({
-    int? id,
-    int? accountId,
-    int? categoryId,
-    models.Money? amount,
-    DateTime? transactionDate,
-    Value<String?> comment = const Value.absent(),
-    DateTime? createdAt,
-    DateTime? updatedAt,
-  }) => Transaction(
-    id: id ?? this.id,
-    accountId: accountId ?? this.accountId,
-    categoryId: categoryId ?? this.categoryId,
-    amount: amount ?? this.amount,
-    transactionDate: transactionDate ?? this.transactionDate,
-    comment: comment.present ? comment.value : this.comment,
-    createdAt: createdAt ?? this.createdAt,
-    updatedAt: updatedAt ?? this.updatedAt,
-  );
+  Transaction copyWith(
+          {int? id,
+          int? accountId,
+          int? categoryId,
+          models.Money? amount,
+          DateTime? transactionDate,
+          Value<String?> comment = const Value.absent(),
+          DateTime? createdAt,
+          DateTime? updatedAt}) =>
+      Transaction(
+        id: id ?? this.id,
+        accountId: accountId ?? this.accountId,
+        categoryId: categoryId ?? this.categoryId,
+        amount: amount ?? this.amount,
+        transactionDate: transactionDate ?? this.transactionDate,
+        comment: comment.present ? comment.value : this.comment,
+        createdAt: createdAt ?? this.createdAt,
+        updatedAt: updatedAt ?? this.updatedAt,
+      );
   Transaction copyWithCompanion(TransactionsCompanion data) {
     return Transaction(
       id: data.id.present ? data.id.value : this.id,
@@ -346,10 +266,9 @@ class Transaction extends DataClass implements Insertable<Transaction> {
       categoryId:
           data.categoryId.present ? data.categoryId.value : this.categoryId,
       amount: data.amount.present ? data.amount.value : this.amount,
-      transactionDate:
-          data.transactionDate.present
-              ? data.transactionDate.value
-              : this.transactionDate,
+      transactionDate: data.transactionDate.present
+          ? data.transactionDate.value
+          : this.transactionDate,
       comment: data.comment.present ? data.comment.value : this.comment,
       createdAt: data.createdAt.present ? data.createdAt.value : this.createdAt,
       updatedAt: data.updatedAt.present ? data.updatedAt.value : this.updatedAt,
@@ -372,16 +291,8 @@ class Transaction extends DataClass implements Insertable<Transaction> {
   }
 
   @override
-  int get hashCode => Object.hash(
-    id,
-    accountId,
-    categoryId,
-    amount,
-    transactionDate,
-    comment,
-    createdAt,
-    updatedAt,
-  );
+  int get hashCode => Object.hash(id, accountId, categoryId, amount,
+      transactionDate, comment, createdAt, updatedAt);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
@@ -424,12 +335,12 @@ class TransactionsCompanion extends UpdateCompanion<Transaction> {
     this.comment = const Value.absent(),
     required DateTime createdAt,
     required DateTime updatedAt,
-  }) : accountId = Value(accountId),
-       categoryId = Value(categoryId),
-       amount = Value(amount),
-       transactionDate = Value(transactionDate),
-       createdAt = Value(createdAt),
-       updatedAt = Value(updatedAt);
+  })  : accountId = Value(accountId),
+        categoryId = Value(categoryId),
+        amount = Value(amount),
+        transactionDate = Value(transactionDate),
+        createdAt = Value(createdAt),
+        updatedAt = Value(updatedAt);
   static Insertable<Transaction> custom({
     Expression<int>? id,
     Expression<int>? accountId,
@@ -452,16 +363,15 @@ class TransactionsCompanion extends UpdateCompanion<Transaction> {
     });
   }
 
-  TransactionsCompanion copyWith({
-    Value<int>? id,
-    Value<int>? accountId,
-    Value<int>? categoryId,
-    Value<models.Money>? amount,
-    Value<DateTime>? transactionDate,
-    Value<String?>? comment,
-    Value<DateTime>? createdAt,
-    Value<DateTime>? updatedAt,
-  }) {
+  TransactionsCompanion copyWith(
+      {Value<int>? id,
+      Value<int>? accountId,
+      Value<int>? categoryId,
+      Value<models.Money>? amount,
+      Value<DateTime>? transactionDate,
+      Value<String?>? comment,
+      Value<DateTime>? createdAt,
+      Value<DateTime>? updatedAt}) {
     return TransactionsCompanion(
       id: id ?? this.id,
       accountId: accountId ?? this.accountId,
@@ -488,8 +398,7 @@ class TransactionsCompanion extends UpdateCompanion<Transaction> {
     }
     if (amount.present) {
       map['amount'] = Variable<String>(
-        $TransactionsTable.$converteramount.toSql(amount.value),
-      );
+          $TransactionsTable.$converteramount.toSql(amount.value));
     }
     if (transactionDate.present) {
       map['transaction_date'] = Variable<DateTime>(transactionDate.value);
@@ -533,28 +442,28 @@ abstract class _$TransactionDatabase extends GeneratedDatabase {
   List<DatabaseSchemaEntity> get allSchemaEntities => [transactions];
 }
 
-typedef $$TransactionsTableCreateCompanionBuilder =
-    TransactionsCompanion Function({
-      Value<int> id,
-      required int accountId,
-      required int categoryId,
-      required models.Money amount,
-      required DateTime transactionDate,
-      Value<String?> comment,
-      required DateTime createdAt,
-      required DateTime updatedAt,
-    });
-typedef $$TransactionsTableUpdateCompanionBuilder =
-    TransactionsCompanion Function({
-      Value<int> id,
-      Value<int> accountId,
-      Value<int> categoryId,
-      Value<models.Money> amount,
-      Value<DateTime> transactionDate,
-      Value<String?> comment,
-      Value<DateTime> createdAt,
-      Value<DateTime> updatedAt,
-    });
+typedef $$TransactionsTableCreateCompanionBuilder = TransactionsCompanion
+    Function({
+  Value<int> id,
+  required int accountId,
+  required int categoryId,
+  required models.Money amount,
+  required DateTime transactionDate,
+  Value<String?> comment,
+  required DateTime createdAt,
+  required DateTime updatedAt,
+});
+typedef $$TransactionsTableUpdateCompanionBuilder = TransactionsCompanion
+    Function({
+  Value<int> id,
+  Value<int> accountId,
+  Value<int> categoryId,
+  Value<models.Money> amount,
+  Value<DateTime> transactionDate,
+  Value<String?> comment,
+  Value<DateTime> createdAt,
+  Value<DateTime> updatedAt,
+});
 
 class $$TransactionsTableFilterComposer
     extends Composer<_$TransactionDatabase, $TransactionsTable> {
@@ -566,45 +475,31 @@ class $$TransactionsTableFilterComposer
     super.$removeJoinBuilderFromRootComposer,
   });
   ColumnFilters<int> get id => $composableBuilder(
-    column: $table.id,
-    builder: (column) => ColumnFilters(column),
-  );
+      column: $table.id, builder: (column) => ColumnFilters(column));
 
   ColumnFilters<int> get accountId => $composableBuilder(
-    column: $table.accountId,
-    builder: (column) => ColumnFilters(column),
-  );
+      column: $table.accountId, builder: (column) => ColumnFilters(column));
 
   ColumnFilters<int> get categoryId => $composableBuilder(
-    column: $table.categoryId,
-    builder: (column) => ColumnFilters(column),
-  );
+      column: $table.categoryId, builder: (column) => ColumnFilters(column));
 
   ColumnWithTypeConverterFilters<models.Money, models.Money, String>
-  get amount => $composableBuilder(
-    column: $table.amount,
-    builder: (column) => ColumnWithTypeConverterFilters(column),
-  );
+      get amount => $composableBuilder(
+          column: $table.amount,
+          builder: (column) => ColumnWithTypeConverterFilters(column));
 
   ColumnFilters<DateTime> get transactionDate => $composableBuilder(
-    column: $table.transactionDate,
-    builder: (column) => ColumnFilters(column),
-  );
+      column: $table.transactionDate,
+      builder: (column) => ColumnFilters(column));
 
   ColumnFilters<String> get comment => $composableBuilder(
-    column: $table.comment,
-    builder: (column) => ColumnFilters(column),
-  );
+      column: $table.comment, builder: (column) => ColumnFilters(column));
 
   ColumnFilters<DateTime> get createdAt => $composableBuilder(
-    column: $table.createdAt,
-    builder: (column) => ColumnFilters(column),
-  );
+      column: $table.createdAt, builder: (column) => ColumnFilters(column));
 
   ColumnFilters<DateTime> get updatedAt => $composableBuilder(
-    column: $table.updatedAt,
-    builder: (column) => ColumnFilters(column),
-  );
+      column: $table.updatedAt, builder: (column) => ColumnFilters(column));
 }
 
 class $$TransactionsTableOrderingComposer
@@ -617,44 +512,29 @@ class $$TransactionsTableOrderingComposer
     super.$removeJoinBuilderFromRootComposer,
   });
   ColumnOrderings<int> get id => $composableBuilder(
-    column: $table.id,
-    builder: (column) => ColumnOrderings(column),
-  );
+      column: $table.id, builder: (column) => ColumnOrderings(column));
 
   ColumnOrderings<int> get accountId => $composableBuilder(
-    column: $table.accountId,
-    builder: (column) => ColumnOrderings(column),
-  );
+      column: $table.accountId, builder: (column) => ColumnOrderings(column));
 
   ColumnOrderings<int> get categoryId => $composableBuilder(
-    column: $table.categoryId,
-    builder: (column) => ColumnOrderings(column),
-  );
+      column: $table.categoryId, builder: (column) => ColumnOrderings(column));
 
   ColumnOrderings<String> get amount => $composableBuilder(
-    column: $table.amount,
-    builder: (column) => ColumnOrderings(column),
-  );
+      column: $table.amount, builder: (column) => ColumnOrderings(column));
 
   ColumnOrderings<DateTime> get transactionDate => $composableBuilder(
-    column: $table.transactionDate,
-    builder: (column) => ColumnOrderings(column),
-  );
+      column: $table.transactionDate,
+      builder: (column) => ColumnOrderings(column));
 
   ColumnOrderings<String> get comment => $composableBuilder(
-    column: $table.comment,
-    builder: (column) => ColumnOrderings(column),
-  );
+      column: $table.comment, builder: (column) => ColumnOrderings(column));
 
   ColumnOrderings<DateTime> get createdAt => $composableBuilder(
-    column: $table.createdAt,
-    builder: (column) => ColumnOrderings(column),
-  );
+      column: $table.createdAt, builder: (column) => ColumnOrderings(column));
 
   ColumnOrderings<DateTime> get updatedAt => $composableBuilder(
-    column: $table.updatedAt,
-    builder: (column) => ColumnOrderings(column),
-  );
+      column: $table.updatedAt, builder: (column) => ColumnOrderings(column));
 }
 
 class $$TransactionsTableAnnotationComposer
@@ -673,17 +553,13 @@ class $$TransactionsTableAnnotationComposer
       $composableBuilder(column: $table.accountId, builder: (column) => column);
 
   GeneratedColumn<int> get categoryId => $composableBuilder(
-    column: $table.categoryId,
-    builder: (column) => column,
-  );
+      column: $table.categoryId, builder: (column) => column);
 
   GeneratedColumnWithTypeConverter<models.Money, String> get amount =>
       $composableBuilder(column: $table.amount, builder: (column) => column);
 
   GeneratedColumn<DateTime> get transactionDate => $composableBuilder(
-    column: $table.transactionDate,
-    builder: (column) => column,
-  );
+      column: $table.transactionDate, builder: (column) => column);
 
   GeneratedColumn<String> get comment =>
       $composableBuilder(column: $table.comment, builder: (column) => column);
@@ -695,114 +571,94 @@ class $$TransactionsTableAnnotationComposer
       $composableBuilder(column: $table.updatedAt, builder: (column) => column);
 }
 
-class $$TransactionsTableTableManager
-    extends
-        RootTableManager<
-          _$TransactionDatabase,
-          $TransactionsTable,
-          Transaction,
-          $$TransactionsTableFilterComposer,
-          $$TransactionsTableOrderingComposer,
-          $$TransactionsTableAnnotationComposer,
-          $$TransactionsTableCreateCompanionBuilder,
-          $$TransactionsTableUpdateCompanionBuilder,
-          (
-            Transaction,
-            BaseReferences<
-              _$TransactionDatabase,
-              $TransactionsTable,
-              Transaction
-            >,
-          ),
-          Transaction,
-          PrefetchHooks Function()
-        > {
+class $$TransactionsTableTableManager extends RootTableManager<
+    _$TransactionDatabase,
+    $TransactionsTable,
+    Transaction,
+    $$TransactionsTableFilterComposer,
+    $$TransactionsTableOrderingComposer,
+    $$TransactionsTableAnnotationComposer,
+    $$TransactionsTableCreateCompanionBuilder,
+    $$TransactionsTableUpdateCompanionBuilder,
+    (
+      Transaction,
+      BaseReferences<_$TransactionDatabase, $TransactionsTable, Transaction>
+    ),
+    Transaction,
+    PrefetchHooks Function()> {
   $$TransactionsTableTableManager(
-    _$TransactionDatabase db,
-    $TransactionsTable table,
-  ) : super(
-        TableManagerState(
+      _$TransactionDatabase db, $TransactionsTable table)
+      : super(TableManagerState(
           db: db,
           table: table,
-          createFilteringComposer:
-              () => $$TransactionsTableFilterComposer($db: db, $table: table),
-          createOrderingComposer:
-              () => $$TransactionsTableOrderingComposer($db: db, $table: table),
-          createComputedFieldComposer:
-              () =>
-                  $$TransactionsTableAnnotationComposer($db: db, $table: table),
-          updateCompanionCallback:
-              ({
-                Value<int> id = const Value.absent(),
-                Value<int> accountId = const Value.absent(),
-                Value<int> categoryId = const Value.absent(),
-                Value<models.Money> amount = const Value.absent(),
-                Value<DateTime> transactionDate = const Value.absent(),
-                Value<String?> comment = const Value.absent(),
-                Value<DateTime> createdAt = const Value.absent(),
-                Value<DateTime> updatedAt = const Value.absent(),
-              }) => TransactionsCompanion(
-                id: id,
-                accountId: accountId,
-                categoryId: categoryId,
-                amount: amount,
-                transactionDate: transactionDate,
-                comment: comment,
-                createdAt: createdAt,
-                updatedAt: updatedAt,
-              ),
-          createCompanionCallback:
-              ({
-                Value<int> id = const Value.absent(),
-                required int accountId,
-                required int categoryId,
-                required models.Money amount,
-                required DateTime transactionDate,
-                Value<String?> comment = const Value.absent(),
-                required DateTime createdAt,
-                required DateTime updatedAt,
-              }) => TransactionsCompanion.insert(
-                id: id,
-                accountId: accountId,
-                categoryId: categoryId,
-                amount: amount,
-                transactionDate: transactionDate,
-                comment: comment,
-                createdAt: createdAt,
-                updatedAt: updatedAt,
-              ),
-          withReferenceMapper:
-              (p0) =>
-                  p0
-                      .map(
-                        (e) => (
-                          e.readTable(table),
-                          BaseReferences(db, table, e),
-                        ),
-                      )
-                      .toList(),
+          createFilteringComposer: () =>
+              $$TransactionsTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$TransactionsTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$TransactionsTableAnnotationComposer($db: db, $table: table),
+          updateCompanionCallback: ({
+            Value<int> id = const Value.absent(),
+            Value<int> accountId = const Value.absent(),
+            Value<int> categoryId = const Value.absent(),
+            Value<models.Money> amount = const Value.absent(),
+            Value<DateTime> transactionDate = const Value.absent(),
+            Value<String?> comment = const Value.absent(),
+            Value<DateTime> createdAt = const Value.absent(),
+            Value<DateTime> updatedAt = const Value.absent(),
+          }) =>
+              TransactionsCompanion(
+            id: id,
+            accountId: accountId,
+            categoryId: categoryId,
+            amount: amount,
+            transactionDate: transactionDate,
+            comment: comment,
+            createdAt: createdAt,
+            updatedAt: updatedAt,
+          ),
+          createCompanionCallback: ({
+            Value<int> id = const Value.absent(),
+            required int accountId,
+            required int categoryId,
+            required models.Money amount,
+            required DateTime transactionDate,
+            Value<String?> comment = const Value.absent(),
+            required DateTime createdAt,
+            required DateTime updatedAt,
+          }) =>
+              TransactionsCompanion.insert(
+            id: id,
+            accountId: accountId,
+            categoryId: categoryId,
+            amount: amount,
+            transactionDate: transactionDate,
+            comment: comment,
+            createdAt: createdAt,
+            updatedAt: updatedAt,
+          ),
+          withReferenceMapper: (p0) => p0
+              .map((e) => (e.readTable(table), BaseReferences(db, table, e)))
+              .toList(),
           prefetchHooksCallback: null,
-        ),
-      );
+        ));
 }
 
-typedef $$TransactionsTableProcessedTableManager =
-    ProcessedTableManager<
-      _$TransactionDatabase,
-      $TransactionsTable,
+typedef $$TransactionsTableProcessedTableManager = ProcessedTableManager<
+    _$TransactionDatabase,
+    $TransactionsTable,
+    Transaction,
+    $$TransactionsTableFilterComposer,
+    $$TransactionsTableOrderingComposer,
+    $$TransactionsTableAnnotationComposer,
+    $$TransactionsTableCreateCompanionBuilder,
+    $$TransactionsTableUpdateCompanionBuilder,
+    (
       Transaction,
-      $$TransactionsTableFilterComposer,
-      $$TransactionsTableOrderingComposer,
-      $$TransactionsTableAnnotationComposer,
-      $$TransactionsTableCreateCompanionBuilder,
-      $$TransactionsTableUpdateCompanionBuilder,
-      (
-        Transaction,
-        BaseReferences<_$TransactionDatabase, $TransactionsTable, Transaction>,
-      ),
-      Transaction,
-      PrefetchHooks Function()
-    >;
+      BaseReferences<_$TransactionDatabase, $TransactionsTable, Transaction>
+    ),
+    Transaction,
+    PrefetchHooks Function()>;
 
 class $TransactionDatabaseManager {
   final _$TransactionDatabase _db;
